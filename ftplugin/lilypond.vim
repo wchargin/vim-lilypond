@@ -1,7 +1,5 @@
-" LilyPond filetype plugin
-" Language:     LilyPond (ft=ly)
 " Maintainer:   Heikki Junes <hjunes@cc.hut.fi>
-" Last Change:  2010 Jul 26
+" Last Change:  2016 December 29
 "
 " Installed As:	vim/ftplugin/lilypond.vim
 " Uses Generated File:	vim/syntax/lilypond-words.vim

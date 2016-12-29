@@ -1,7 +1,7 @@
 " LilyPond syntax file
 " Language:     LilyPond
 " Maintainer:   Heikki Junes <hjunes@cc.hut.fi>
-" Last Change:  2010 Jul 26
+" Last Change:  2016 December 29
 "
 " Installed As:         vim/syntax/lilypond.vim
 " Uses Generated File:  vim/syntax/lilypond-words.vim
