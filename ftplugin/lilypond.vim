@@ -53,5 +53,3 @@ map <buffer> <S-F12> :g/%.*/normal 0x<Return>
 " Completions in Insert/Replace-mode with <Ctrl-N>
 setlocal dictionary-=$VIM/syntax/lilypond-words dictionary+=$VIM/syntax/lilypond-words
 setlocal complete-=k complete+=k
-"
-setlocal showmatch
