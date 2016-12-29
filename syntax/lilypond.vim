@@ -49,8 +49,16 @@ syn match lilySpecial "\\[<!>\\]"
 " c--\mf c^^\mf c__\mf
 syn match lilyArticulation "[-_^][-_^+|>.]"
 
-" Include Scheme syntax highlighting, where appropriate
+" Include Scheme syntax highlighting, where appropriate.
+"
+" Note that the default Scheme syntax file clobbers the 'iskeyword'
+" setting. This causes problems because it makes the `<` character a
+" keyword, which affects chords in Lilypond. In particular, it means
+" that the first note in a chord like `<c e g>` will not be matched as a
+" `lilyNote`. To prevent this, we save and restore the variable.
+let s:old_iskeyword = &iskeyword
 syn include @embeddedScheme syntax/scheme.vim
+let &iskeyword = s:old_iskeyword
 unlet b:current_syntax
 syn region lilyScheme matchgroup=Delimiter start="#['`]\?(" matchgroup=Delimiter end=")" contains=@embeddedScheme
 
