@@ -31,7 +31,7 @@ setlocal mps+=<:>
 " Case matters
 syn case match
 
-syn cluster lilyMatchGroup contains=lilyMatcher,lilyString,lilyComment,lilyStatement,lilyNumber,lilySlur,lilySpecial,lilyNote,lilyKeyword,lilyArticulation,lilyReservedWord,lilyScheme
+syn cluster lilyMatchGroup contains=lilyMatcher,lilyString,lilyComment,lilyStatement,lilyNumber,lilySlur,lilySpecial,lilyNote,lilyKeyword,lilyArticulation,lilyReservedWord,lilyScheme,lilyMisplacedModifier
 
 syn region lilyMatcher matchgroup=Delimiter start="{" skip="\\\\\|\\[<>]" end="}" contains=@lilyMatchGroup fold
 syn region lilyMatcher matchgroup=Delimiter start="\[" end="]" contains=@lilyMatchGroup fold
@@ -48,6 +48,9 @@ syn match lilySpecial "\\[<!>\\]"
 " avoid highlighting the extra character in situations like
 " c--\mf c^^\mf c__\mf
 syn match lilyArticulation "[-_^][-_^+|>.]"
+
+" Catch accidental entries like "c4," in place of "c,4".
+syn match lilyMisplacedModifier "\a\+[^a-z,'?! \t\n]\S*\\\@<![,'?!]"
 
 " Include Scheme syntax highlighting, where appropriate.
 "
@@ -84,6 +87,8 @@ if version >= 508 || !exists("did_lily_syn_inits")
   HiLink lilyArticulation PreProc
   HiLink lilyKeyword      Keyword
   HiLink lilyReservedWord Type
+
+  HiLink lilyMisplacedModifier  Error
 
   HiLink lilyNumber       Constant
   HiLink lilySpecial      Special
