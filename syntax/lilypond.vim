@@ -31,7 +31,7 @@ setlocal mps+=<:>
 " Case matters
 syn case match
 
-syn cluster lilyMatchGroup contains=lilyMatcher,lilyString,lilyComment,lilyStatement,lilyNumber,lilySlur,lilySpecial,lilyNote,lilyKeyword,lilyArticulation,lilyReservedWord,lilyScheme,lilyMisplacedModifier
+syn cluster lilyMatchGroup contains=lilyMatcher,lilyString,lilyComment,lilyStatement,lilyNumber,lilySlur,lilySpecial,lilyNote,lilyKeyword,lilyArticulation,lilyReservedWord,lilySchemeMarker,lilyMisplacedModifier
 
 syn region lilyMatcher matchgroup=Delimiter start="{" skip="\\\\\|\\[<>]" end="}" contains=@lilyMatchGroup fold
 syn region lilyMatcher matchgroup=Delimiter start="\[" end="]" contains=@lilyMatchGroup fold
@@ -63,7 +63,7 @@ let s:old_iskeyword = &iskeyword
 syn include @embeddedScheme syntax/scheme.vim
 let &iskeyword = s:old_iskeyword
 unlet b:current_syntax
-syn region lilyScheme matchgroup=Delimiter start="#['`]\?(" matchgroup=Delimiter end=")" contains=@embeddedScheme
+syn match lilySchemeMarker "#" nextgroup=@embeddedScheme
 
 " Rest of syntax highlighting rules start here
 "
@@ -93,6 +93,8 @@ if version >= 508 || !exists("did_lily_syn_inits")
   HiLink lilyNumber       Constant
   HiLink lilySpecial      Special
   HiLink lilySlur         ModeMsg
+
+  HiLink lilySchemeMarker Special
 
   delcommand HiLink
 endif
